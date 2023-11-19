@@ -36,13 +36,13 @@ app.use((err, req, res, next) => {
   res.send(err.message);
 });
 
-app.use(function(req, res, next) {
-  res.setHeader('Access-Control-Allow-Origin', ''); // Replace with the allowed origin
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-  res.setHeader('Access-Control-Allow-Credentials', 'true');
-  next();
-});
+app.use(
+  cors({
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+    origin:["http://localhost:3001"],
+    credentials: true,
+  })
+);
 
 module.exports = app;
 
