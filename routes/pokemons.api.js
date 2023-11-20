@@ -22,7 +22,7 @@ router.get("/", (req, res, next) => {
       if (!filterQuery[key]) delete filterQuery[key];
     });
     let offset = limit * (page - 1);
-    let db = fs.readFileSync("pokemons.json", "utf-8");
+    let db = fs.readFileSync("Pokemons.json", "utf-8");
     db = JSON.parse(db);
     const { pokemons } = db;
     //Filter data by title
@@ -64,7 +64,7 @@ router.get("/", (req, res, next) => {
 router.get("/:pokemonId", (req, res, next) => {
   try {
     const { pokemonId } = req.params;
-    let db = fs.readFileSync("pokemons.json", "utf-8");
+    let db = fs.readFileSync("Pokemons.json", "utf-8");
     db = JSON.parse(db);
     const { pokemons } = db;
     let result = [];
@@ -135,7 +135,7 @@ router.post("/", (req, res, next) => {
       abilities,
     } = req.body;
     console.log(req.body);
-    let db = fs.readFileSync("pokemons.json", "utf-8");
+    let db = fs.readFileSync("Pokemons.json", "utf-8");
     db = JSON.parse(db);
     const { pokemons } = db;
     if (!name || !id || req.body.types.length === 0 || !url) {
@@ -209,7 +209,7 @@ router.post("/", (req, res, next) => {
     pokemons.push(newPokemon);
     db.pokemons = pokemons;
     db = JSON.stringify(db);
-    fs.writeFileSync("pokemons.json", db);
+    fs.writeFileSync("Pokemons.json", db);
     res.status(200).send(newPokemon);
   } catch (error) {
     next(error);
@@ -237,7 +237,7 @@ router.put("/:id", (req, res, next) => {
       exception.statusCode = 401;
       throw exception;
     }
-    let db = fs.readFileSync("pokemons.json", "utf-8");
+    let db = fs.readFileSync("Pokemons.json", "utf-8");
     db = JSON.parse(db);
     const { pokemons } = db;
     const targetIndex = pokemons.findIndex((pokemon) => pokemon.id === id);
@@ -252,7 +252,7 @@ router.put("/:id", (req, res, next) => {
     console.log(db.pokemons[targetIndex]);
     db = JSON.stringify(db);
     //write and save to db.json
-    fs.writeFileSync("pokemons.json", db);
+    fs.writeFileSync("Pokemons.json", db);
     //put send response
     res.status(200).send(updatedPokemon);
   } catch (error) {
@@ -263,7 +263,7 @@ router.put("/:id", (req, res, next) => {
 router.delete("/:id", (req, res, next) => {
   try {
     const { id } = req.params;
-    let db = fs.readFileSync("pokemons.json", "utf-8");
+    let db = fs.readFileSync("Pokemons.json", "utf-8");
     db = JSON.parse(db);
     const { pokemons } = db;
     const targetIndex = pokemons.findIndex((pokemon) => pokemon.id === id);
@@ -277,7 +277,7 @@ router.delete("/:id", (req, res, next) => {
     db = JSON.stringify(db);
     //write and save to db.json
 
-    fs.writeFileSync("pokemons.json", db);
+    fs.writeFileSync("Pokemons.json", db);
     //delete send response
     res.status(200).send({});
   } catch (error) {

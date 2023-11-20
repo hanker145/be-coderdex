@@ -53,9 +53,9 @@ const createPokemon = async () => {
     .filter((e) => e.url);
 
   console.log("newData", newData);
-  let data = JSON.parse(fs.readFileSync("pokemons.json"));
+  let data = JSON.parse(fs.readFileSync("Pokemons.json"));
   data.pokemons = newData;
-  fs.writeFileSync("pokemons.json", JSON.stringify(data));
+  fs.writeFileSync("Pokemons.json", JSON.stringify(data));
   console.log("done");
 };
 
